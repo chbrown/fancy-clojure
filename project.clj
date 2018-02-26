@@ -13,4 +13,6 @@
   :cljsbuild {:builds [{:source-paths ["src"]
                         :compiler {:optimizations :simple
                                    :pretty-print false}}]}
-  :profiles {:test {:plugins [[lein-cloverage "1.0.10"]]}})
+  :profiles {:test {:plugins [[lein-cloverage "1.0.10"]]}
+             :repl {:dependencies [[org.clojure/tools.namespace "0.3.0-alpha3"]]
+                    :source-paths ["dev"]}})
