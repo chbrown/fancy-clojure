@@ -24,6 +24,7 @@
   (is (= "" (with-out-str (pr-pretty))))
   (is (= example-map-str (with-out-str (pr-pretty example-map))))
   (is (= "{}" (with-out-str (pr-pretty {}))))
+  (is (= "\\A" (with-out-str (pr-pretty \A))))
   (is (= "'a :z" (with-out-str (pr-pretty 'a :z))))
   (is (= "1 2 3" (with-out-str (pr-pretty 1 2 3)))))
 
