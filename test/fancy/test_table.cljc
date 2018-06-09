@@ -3,6 +3,8 @@
             [fancy.table :refer [render-table]]))
 
 (deftest test-render-table
+  (is (= ["" ""] (render-table nil)))
+  (is (= ["" "" ""] (render-table [{}])))
   (let [maps [{:a 1 :b "short"}
               {:b "long" :c 99999}]]
     (is (= [" :a | :b    | :c    "
