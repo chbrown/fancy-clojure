@@ -63,7 +63,7 @@
     ; and align right of the keys
     ; TODO: run the keys through pr-seq too
     (let [key-strings (map pr-str (keys m))
-          key-width (apply max (map count key-strings))
+          key-width (apply max 0 (map count key-strings))
           ; key-offset adds 1 for the opening brace
           key-offset (+ offset 1)
           key-seqs (map (fn [k] (list k (repeat-to-length \space (- key-width (count k))))) key-strings)
