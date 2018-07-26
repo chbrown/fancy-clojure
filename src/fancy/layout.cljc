@@ -83,6 +83,9 @@
   clojure.lang.IPersistentList
   (pr-seq [l offset]
     (pr-seq-coll l offset (list \' \() (list \))))
+  clojure.lang.LazySeq
+  (pr-seq [s offset]
+    (pr-seq-coll s offset (list \' \() (list \))))
   clojure.lang.IPersistentVector
   (pr-seq [v offset]
     (pr-seq-coll v offset (list \[) (list \])))

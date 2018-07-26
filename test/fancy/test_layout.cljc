@@ -26,6 +26,7 @@
   (is (= "{}" (with-out-str (pr-pretty {}))))
   (is (= "\\A" (with-out-str (pr-pretty \A))))
   (is (= "'a :z" (with-out-str (pr-pretty 'a :z))))
+  (is (= "'(1 2)" (with-out-str (pr-pretty (lazy-seq [1 2])))))
   (is (= "1 2 3" (with-out-str (pr-pretty 1 2 3)))))
 
 (deftest test-prn-pretty
