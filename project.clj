@@ -8,7 +8,7 @@
                               [:email "io@henrian.com"]]]
   :deploy-repositories [["releases" :clojars]]
   :dependencies [[org.clojure/clojure "1.9.0"]
-                 [org.clojure/clojurescript "1.9.946"]]
+                 [org.clojure/clojurescript "1.10.339"]]
   :plugins [[lein-cljsbuild "1.1.7"]]
   :cljsbuild {:builds [{:id "production"
                         :source-paths ["src"]
