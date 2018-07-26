@@ -50,10 +50,16 @@
     requires line breaks, it is the responsibility of the implementation to
     indent `offset` spaces after the line break"))
 
-(defn- pr-seq-items
+(defn- pr-seq-coll
   "Helper for pr-seq implementations like IPersistentList and IPersistentVector."
-  [items offset]
-  (indent-seqs (map #(pr-seq % offset) items) offset))
+  [items offset prefix suffix]
+  ; increment offset for opening parens / bracket / set reader macro
+  (let [new-offset (+ offset (count-chars prefix))]
+    ; separate each value on its own line
+    (list
+     prefix
+     (indent-seqs (map #(pr-seq % new-offset) items) new-offset)
+     suffix)))
 
 (extend-protocol FixedWidthLayout
   clojure.lang.IPersistentMap
@@ -76,27 +82,13 @@
        (list \}))))
   clojure.lang.IPersistentList
   (pr-seq [l offset]
-    (list
-     (list \' \()
-     ; increment offset for opening parens
-     (pr-seq-items l (+ offset 2))
-     (list \))))
+    (pr-seq-coll l offset (list \' \() (list \))))
   clojure.lang.IPersistentVector
   (pr-seq [v offset]
-    ; separate each value on its own line
-    (list
-     (list \[)
-     ; increment offset for opening bracket
-     (pr-seq-items v (+ offset 1))
-     (list \])))
+    (pr-seq-coll v offset (list \[) (list \])))
   clojure.lang.IPersistentSet
   (pr-seq [s offset]
-    ; separate each value on its own line
-    (list
-     (list \# \{)
-     ; increment offset for opening set reader macro
-     (pr-seq-items s (+ offset 2))
-     (list \})))
+    (pr-seq-coll s offset (list  \# \{) (list \})))
   clojure.lang.Symbol
   (pr-seq [s _]
     (list (list \') (pr-str s)))
