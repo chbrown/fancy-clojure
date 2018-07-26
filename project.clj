@@ -13,7 +13,15 @@
   :cljsbuild {:builds [{:id "production"
                         :source-paths ["src"]
                         :compiler {:optimizations :simple
-                                   :pretty-print false}}]}
-  :profiles {:test {:plugins [[lein-cloverage "1.0.10"]]}
+                                   :pretty-print false}}
+                       {:id "test"
+                        :source-paths ["src" "test"]
+                        :compiler {:output-dir "target/test"
+                                   :output-to "target/test/main.js"
+                                   :main fancy.doo-runner
+                                   :optimizations :whitespace}}]}
+  :profiles {:test {:plugins [[lein-doo "0.1.10"]
+                              [lein-cloverage "1.0.10"]]
+                    :doo {:paths {:rhino "lein run -m org.mozilla.javascript.tools.shell.Main"}}}
              :repl {:dependencies [[org.clojure/tools.namespace "0.3.0-alpha3"]]
                     :source-paths ["dev"]}})
