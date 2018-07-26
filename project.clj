@@ -10,7 +10,8 @@
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [org.clojure/clojurescript "1.9.946"]]
   :plugins [[lein-cljsbuild "1.1.7"]]
-  :cljsbuild {:builds [{:source-paths ["src"]
+  :cljsbuild {:builds [{:id "production"
+                        :source-paths ["src"]
                         :compiler {:optimizations :simple
                                    :pretty-print false}}]}
   :profiles {:test {:plugins [[lein-cloverage "1.0.10"]]}
