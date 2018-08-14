@@ -1,4 +1,4 @@
-(defproject fancy/fancy "0.2.2"
+(defproject fancy/fancy "0.2.3"
   :description "Fancy printing -- prettier than pretty"
   :url "https://github.com/chbrown/fancy-clojure"
   :license {:name "Eclipse Public License"
