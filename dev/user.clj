@@ -1,6 +1,6 @@
 (ns user
   "REPL init"
-  (:require [clojure.repl :as repl]
+  (:require [clojure.repl :refer :all]
             [clojure.pprint :as pprint]
             [clojure.string :as str]
             [clojure.java.io :as io]
